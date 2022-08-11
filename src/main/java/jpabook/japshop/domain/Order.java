@@ -23,10 +23,10 @@ public class Order extends BaseEntity{
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "DEILVERY_ID")
     private Delivery delivery;
 
@@ -34,6 +34,7 @@ public class Order extends BaseEntity{
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
+
 
     public Long getId() {
         return id;
